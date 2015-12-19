@@ -61,6 +61,24 @@ for i = 1, #v do
   }
 end
 
+v = { 'Terminal' }
+for i = 1, #v do
+  app_resize_functions[v[i]] = {
+    ["27"] = pw(0, 22, 1366, 685),
+    ["24"] = pw(0, 22, 1366, 685),
+    ["11"] = fs()
+  }
+end
+
+v = { 'IBM Notes', 'Thunderbird' }
+for i = 1, #v do
+  app_resize_functions[v[i]] = {
+    ["27"] = pw(258, 83, 1071, 1158),  -- some odd least-ugly placement
+    ["24"] = pw(258, 83, 1071, 1158),
+    ["11"] = fs()
+  }
+end
+
 v = {
 'Sublime Text',
 'IntelliJ IDEA',

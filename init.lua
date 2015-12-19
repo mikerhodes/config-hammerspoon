@@ -53,7 +53,7 @@ end
 local app_resize_functions = {}
 
 v = { 'LimeChat', '1Password' }
-for i = 1, #v do  -- #v is the size of v for lists.
+for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(1367, 22, 1193, 685),  -- top right
     ["24"] = pw(727, 22, 1193, 685),
@@ -71,8 +71,9 @@ v = {
 'FirefoxDeveloperEdition',
 'Google Chrome',
 'Evernote',
-'Slack' }
-for i = 1, #v do  -- #v is the size of v for lists.
+'Slack',
+'SourceTree' }
+for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(258, 105, 1904, 1158),  -- top right
     ["24"] = fs(),
@@ -81,23 +82,17 @@ for i = 1, #v do  -- #v is the size of v for lists.
 end
 
 function position()
-  local screenWidth = hs.screen.mainScreen():frame().w
   local t = {
     [2560] = "27",
     [1920] = "24",
     [1366] = "11"
   }
-  local monitorLayout = t[screenWidth] or '11'
-  logger:i(string.format("Monitor Layout: %s", monitorLayout))
-
-  -- runningApplications = hs.application.runningApplications()
+  local monitorLayout = t[hs.screen.mainScreen():frame().w] or '11'
 
   for name, resizeFunctions in pairs(app_resize_functions) do
     local app = hs.application(name)
     if app then
-      logger:i(string.format("Found app: %s", app:title()))
-      for _,win in pairs(app:allWindows()) do
-        logger:i(string.format("Found windows: %s", win:title()))
+      for _,win in ipairs(app:allWindows()) do
         resizeFunctions[monitorLayout](win)
       end
     end
@@ -173,7 +168,6 @@ end)
 --]]
 
 function position_window(win, x, y, w, h, screen_id)
-    logger:i(string.format("%s => %f, %f, %f, %f", win:title(), x, y, w, h))
     local f = win:frame()
     f.x = x
     f.y = y
@@ -183,7 +177,6 @@ function position_window(win, x, y, w, h, screen_id)
 end
 
 function full_screen(win, screen_id)
-    logger:i(string.format("%s => full screen", win:title(), x, y, w, h))
     local screen = win:screen()
     local max = screen:frame()
     local f = win:frame()

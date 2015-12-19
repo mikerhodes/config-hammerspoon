@@ -128,13 +128,29 @@ end
     3 => full screen
 --]]
 
+position_hotkey_timer = nil  -- global for timer, so we can cancel on exit
+
 k = hs.hotkey.modal.new('ctrl', 'space')
 function k:entered()
-  hs.alert'Position Windows'
-  -- hs.timer.doAfter(2, function()
-  --   hs.alert'Cancel mode'
-  --   k:exit()
-  -- end)
+  local timeout = 2
+  hs.alert('Position Windows', timeout)
+
+  -- cancel any existing position_hotkey_timer
+  if position_hotkey_timer then
+    position_hotkey_timer:stop()
+    position_hotkey_timer = nil
+  end
+  position_hotkey_timer = hs.timer.doAfter(timeout, function()
+    k:exit()
+  end)
+end
+function k:exited()
+  -- we're exiting, clear the timer that auto-exits
+  if position_hotkey_timer then
+    position_hotkey_timer:stop()
+    position_hotkey_timer = nil
+    hs.alert.closeAll()
+  end
 end
 
 k:bind('', 'escape', function()

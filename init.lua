@@ -9,7 +9,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
     hs.reload()
 end)
 
-local DELL_27_SCREEN_ID = ''
+local DELL_27_SCREEN_ID = 'DELL U2713HM'
 local DELL_24_SCREEN_ID = 'DELL U2415'
 local LAPTOP_SCREEN_ID = 'Color LCD'
 
@@ -61,7 +61,7 @@ for i = 1, #v do
   }
 end
 
-v = { 'Terminal' }
+v = { }  -- used to be Terminal
 for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(0, 22, 1366, 685),
@@ -73,8 +73,8 @@ end
 v = { 'IBM Notes', 'Thunderbird' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
-    ["27"] = pw(258, 83, 1071, 1158),  -- some odd least-ugly placement
-    ["24"] = pw(258, 83, 1071, 1158),
+    ["27"] = pw(258, 105, 1071, 1158),  -- some odd least-ugly placement
+    ["24"] = pw(258, 26, 1071, 1158),
     ["11"] = fs()
   }
 end
@@ -90,7 +90,11 @@ v = {
 'Google Chrome',
 'Evernote',
 'Slack',
-'SourceTree' }
+'SourceTree',
+'Terminal',
+'Google Hangouts',
+'Things',
+'OmniFocus' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(258, 105, 1904, 1158),  -- top right

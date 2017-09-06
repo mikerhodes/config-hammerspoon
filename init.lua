@@ -94,7 +94,8 @@ v = {
 'Terminal',
 'Google Hangouts',
 'Things',
-'OmniFocus' }
+'OmniFocus',
+'Code' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(258, 105, 1904, 1158),  -- top right

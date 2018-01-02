@@ -202,6 +202,34 @@ k:bind('', '3', function()
   k:exit();
 end)
 
+k:bind('', '4', function()
+  local win = hs.window.focusedWindow()
+  local screen = win:screen()
+  local max = screen:frame()
+  position_window(
+    win,
+    max.x,
+    max.y,
+    max.w * 0.66,
+    max.h
+  )
+  k:exit();
+end)
+
+k:bind('', '5', function()
+  local win = hs.window.focusedWindow()
+  local screen = win:screen()
+  local max = screen:frame()
+  position_window(
+    win,
+    max.x + (max.w * 0.66),
+    max.y,
+    max.w * 0.34,
+    max.h
+  )
+  k:exit();
+end)
+
 --[[
     Helper functions
 --]]

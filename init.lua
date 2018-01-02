@@ -3,6 +3,11 @@
 hs.logger.defaultLogLevel = 'info'
 logger = hs.logger.new('hs')
 
+-- Set up overlays for inactive windows
+hs.window.highlight.ui.overlay=true
+hs.window.highlight.start()
+hs.window.highlight.ui.overlayColor = {0.1,0.1,0.1,0.2}
+
 -- Set up a config reload hotkey
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
     hs.alert 'Reloading config'

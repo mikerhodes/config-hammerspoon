@@ -66,7 +66,7 @@ for i = 1, #v do
   }
 end
 
-v = { }  -- used to be Terminal
+v = { }  -- Used to be Terminal
 for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(0, 22, 1366, 685),
@@ -75,11 +75,20 @@ for i = 1, #v do
   }
 end
 
-v = { 'IBM Notes', 'Thunderbird' }
+v = {  }  -- Used to be 'IBM Notes', 'Thunderbird'
 for i = 1, #v do
   app_resize_functions[v[i]] = {
     ["27"] = pw(258, 105, 1071, 1158),  -- some odd least-ugly placement
     ["24"] = pw(258, 26, 1071, 1158),
+    ["11"] = fs()
+  }
+end
+
+v = { 'OmniFocus' }
+for i = 1, #v do
+  app_resize_functions[v[i]] = {
+    ["27"] = pw(2000, 0, 560, 1440),  -- some odd least-ugly placement
+    ["24"] = fs(),
     ["11"] = fs()
   }
 end
@@ -99,11 +108,15 @@ v = {
 'Terminal',
 'Google Hangouts',
 'Things',
-'OmniFocus',
-'Code' }
+'Code',
+'Messages',
+'WhatsApp',
+'GitUp',
+'IBM Notes',
+'Thunderbird' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
-    ["27"] = pw(258, 105, 1904, 1158),  -- top right
+    ["27"] = pw(0, 0, 2000, 1440),  -- top right
     ["24"] = fs(),
     ["11"] = fs()
   }

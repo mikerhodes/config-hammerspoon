@@ -15,7 +15,7 @@ hs.hotkey.bind({"cmd", "alt", "ctrl"}, "R", function()
 end)
 
 local DELL_27_SCREEN_ID = 'DELL U2713HM'
-local DELL_24_SCREEN_ID = 'DELL U2415'
+local DELL_24_SCREEN_ID = 'DELL U2415'  -- 1920 x 1200
 local LAPTOP_SCREEN_ID = 'Color LCD'
 
 --[[
@@ -84,11 +84,14 @@ for i = 1, #v do
   }
 end
 
+local OM_27_WIDTH = 560
+local OM_24_WIDTH = 442  -- this is the thinnest the OM window will allow
+
 v = { 'OmniFocus' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
-    ["27"] = pw(2000, 0, 560, 1440),  -- some odd least-ugly placement
-    ["24"] = fs(),
+    ["27"] = pw(2560-OM_27_WIDTH, 0, OM_27_WIDTH, 1440),
+    ["24"] = pw(1920-OM_24_WIDTH, 0, OM_24_WIDTH, 1200),
     ["11"] = fs()
   }
 end
@@ -116,8 +119,8 @@ v = {
 'Thunderbird' }
 for i = 1, #v do
   app_resize_functions[v[i]] = {
-    ["27"] = pw(0, 0, 2000, 1440),  -- top right
-    ["24"] = fs(),
+    ["27"] = pw(0, 0, 2560-OM_27_WIDTH, 1440),  -- top right
+    ["24"] = pw(0, 0, 1920-OM_24_WIDTH, 1200),
     ["11"] = fs()
   }
 end
